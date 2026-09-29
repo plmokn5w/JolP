@@ -233,6 +233,9 @@ GameObject:
   - component: {fileID: 205279636}
   - component: {fileID: 205279635}
   - component: {fileID: 205279637}
+  - component: {fileID: 205279640}
+  - component: {fileID: 205279638}
+  - component: {fileID: 205279639}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -302,7 +305,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -319,14 +322,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b20e8edbf9e3d148ae5560d1adb5a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeltScrollPlayerController
-  moveSpeed: 5
-  jumpForce: 7
-  groundCheckOffset: {x: 0, y: 0, z: 0}
-  groundCheckRadius: 0.2
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  renderModule: {fileID: 1136727092}
+--- !u!114 &205279638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205279633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5252a6c4633ec244bad5bc1f37799260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RenderModule
+  spriteTransform: {fileID: 1136727090}
+  spriteRenderer: {fileID: 1136727091}
+--- !u!114 &205279639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205279633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcaa3cdc5486fd49bc98c1fa3bb0dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatModule
+  stats:
+  - key: 0
+    value: 5
+  - key: 1
+    value: 7
+--- !u!114 &205279640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205279633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59535e6ec1bbb7d458f7e97a5bba0066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsModule
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +513,6 @@ GameObject:
   m_Component:
   - component: {fileID: 604144240}
   - component: {fileID: 604144241}
-  - component: {fileID: 604144242}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -557,19 +595,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &604144242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604144239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5252a6c4633ec244bad5bc1f37799260, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BeltScrollSpriteOffset
-  parentTransform: {fileID: 1931090248}
 --- !u!1 &955315537
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +684,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1136727090}
   - component: {fileID: 1136727091}
-  - component: {fileID: 1136727092}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -742,19 +766,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &1136727092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136727089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5252a6c4633ec244bad5bc1f37799260, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BeltScrollSpriteOffset
-  parentTransform: {fileID: 205279634}
 --- !u!1 &1274439934
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +916,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a317bb046b47cde46b7e5465fbefc241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldConfig
+  <GroundLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 8
+  <GroundCheckSize>k__BackingField: {x: 0.5, y: 0.1, z: 0.5}
   <Gravity>k__BackingField: 10
   <FallingGravityWeight>k__BackingField: 2
   <ZtoY>k__BackingField: 0.5

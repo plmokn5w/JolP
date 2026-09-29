@@ -1,26 +1,17 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class RenderModule : MonoBehaviour
 {
-    [SerializeField] private Transform parentTransform;
-
-    private SpriteRenderer spriteRenderer;
-
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    [SerializeField] private Transform spriteTransform;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private void LateUpdate()
     {
-        if (parentTransform == null) return;
-
         // Parent의 Z 깊이 위치를 자식의 Local Y 오프셋으로 반영
-        float yOffset = parentTransform.position.z * WorldConfig.Instance.ZtoY;
+        float yOffset = transform.position.z * WorldConfig.Instance.ZtoY;
 
-        transform.localPosition = new Vector3(0f, yOffset, 0f);
+        spriteTransform.localPosition = new Vector3(0f, yOffset, 0f);
     }
 
     public void Lookat(float dir)
