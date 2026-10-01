@@ -5,6 +5,7 @@ public class WorldConfig : MonoBehaviour
 {
     public static WorldConfig Instance;
 
+    public InputSystem Input { get; private set; }
     [field : SerializeField] public LayerMask GroundLayer { get; private set; }
     [field : SerializeField] public Vector3 GroundCheckSize { get; private set; }
     [field : SerializeField] public float Gravity { get; private set; }
@@ -14,6 +15,10 @@ public class WorldConfig : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
+            Input = new InputSystem();
+            Input.Enable();
             Instance = this;
+        }
     }
 }
