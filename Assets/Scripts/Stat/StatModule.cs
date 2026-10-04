@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class StatModule : MonoBehaviour
 {
-    [SerializeField] private Dictionary<StatType, float> stats;
+    [SerializeField] private Dictionary<StatType, Stat> stats;
 
-    public float this[StatType type]
+    public Stat this[StatType type]
     {
         get
         {
-            stats.TryGetValue(type, out float stat);
+            stats.TryGetValue(type, out Stat stat);
             return stat;
         }
     }

@@ -10,6 +10,7 @@ public class WorldConfig : MonoBehaviour
     [field : SerializeField] public Vector3 GroundCheckSize { get; private set; }
     [field : SerializeField] public float Gravity { get; private set; }
     [field : SerializeField] public float FallingGravityWeight { get; private set; }
+    [field : SerializeField] public float Drag { get; private set; }
     [field : SerializeField] public float ZtoY { get; private set; }
 
     private void Awake()
