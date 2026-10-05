@@ -7,7 +7,6 @@ public class PhysicsModule : MonoBehaviour
     public PhysicsState State { get; private set; }
 
     private Rigidbody rigidbody;
-    private Collider collider;
 
     [Header("현재 속도")]
     [SerializeField] private Vector3 velocity;
@@ -27,7 +26,6 @@ public class PhysicsModule : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        collider = GetComponent<Collider>();
     }
 
     private void FixedUpdate()

@@ -232,13 +232,14 @@ GameObject:
   - component: {fileID: 205279634}
   - component: {fileID: 205279636}
   - component: {fileID: 205279635}
-  - component: {fileID: 205279637}
   - component: {fileID: 205279640}
   - component: {fileID: 205279638}
+  - component: {fileID: 205279645}
   - component: {fileID: 205279639}
   - component: {fileID: 205279643}
   - component: {fileID: 205279642}
   - component: {fileID: 205279644}
+  - component: {fileID: 205279637}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -431,6 +432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilityModule
   abilities:
   - rid: 6307076972457754705
+  - rid: 6307076999005601873
+  - rid: 6307076999005601874
   references:
     version: 2
     RefIds:
@@ -438,6 +441,37 @@ MonoBehaviour:
       type: {class: MoveAbility, ns: , asm: Assembly-CSharp}
       data:
         allowedStateList: []
+    - rid: 6307076999005601873
+      type: {class: JumpAbility, ns: , asm: Assembly-CSharp}
+      data:
+        allowedStateList: []
+    - rid: 6307076999005601874
+      type: {class: AttackAbility, ns: , asm: Assembly-CSharp}
+      data:
+        allowedStateList: []
+--- !u!114 &205279645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205279633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172f0e321a405cd4ba6dd6df586a0d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControlModule
+  <Flags>k__BackingField: 0
+  <LookDirection>k__BackingField: 0
+  <MoveDirection>k__BackingField: {x: 0, y: 0}
+  flags:
+  - key: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    value: 1
+  - key: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    value: 2
+  - key: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    value: 4
+  moveInputRef: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
