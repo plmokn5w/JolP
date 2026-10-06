@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class Scarecrow : MonoBehaviour, Kinetic, Bounceable
+public class Scarecrow : Entity, Kinetic, Bounceable
 {
     private PhysicsModule physicsModule;
     private GaugeModule gaugeModule;

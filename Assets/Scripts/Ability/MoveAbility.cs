@@ -19,7 +19,7 @@ public class MoveAbility : Ability
 
     public override bool CanActivate()
     {
-        return true;
+        return /*base.CanActivate() && */true;
     }
 
     public override void Execute()

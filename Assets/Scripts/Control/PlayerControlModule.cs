@@ -30,5 +30,10 @@ public class PlayerControlModule : ControlModule
         }
 
         MoveDirection = moveInput.ReadValue<Vector2>();
+        float xDir = MoveDirection.x;
+        if (xDir < 0f)
+            LookDirection = FacingSide.Left;
+        if (xDir > 0f)
+            LookDirection = FacingSide.Right;
     }
 }

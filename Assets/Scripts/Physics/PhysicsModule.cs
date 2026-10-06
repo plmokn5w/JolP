@@ -1,7 +1,6 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PhysicsModule : MonoBehaviour
 {
     public PhysicsState State { get; private set; }

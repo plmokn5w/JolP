@@ -1,13 +1,14 @@
 
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     private PhysicsModule physicsModule;
     private RenderModule renderModule;
     private PlayerControlModule playerControlModule;
     private StatModule statModule;
     private CombatModule combatModule;
+    private StateMachine stateMachine;
     private AbilityModule abilityModule;
 
     private void Awake()
@@ -17,15 +18,13 @@ public class Player : MonoBehaviour
         playerControlModule = GetComponent<PlayerControlModule>();
         statModule = GetComponent<StatModule>();
         combatModule = GetComponent<CombatModule>();
+        stateMachine = GetComponent<StateMachine>();
         abilityModule = GetComponent<AbilityModule>();
     }
 
     private void Update()
     {
-        Vector2 moveInput = WorldConfig.Instance.Input.Player.Move.ReadValue<Vector2>();
-        float inputX = moveInput.x;
-
-        renderModule.Lookat(inputX);
-        combatModule.SetFacingDirection(inputX);
+        renderModule.Lookat(playerControlModule.LookDirection);
+        combatModule.SetFacingDirection(playerControlModule.LookDirection);
     }
 }
