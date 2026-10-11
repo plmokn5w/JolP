@@ -12,13 +12,13 @@ public class Gauge
 
     public void Lose(float loss)
     {
-        CurValue -= loss;
+        CurValue = Mathf.MoveTowards(CurValue, 0f, loss);
         //ValueChangeChannel.OnNext(this);
     }
 
     public void Recover(float recovery)
     {
-        CurValue += recovery;
+        CurValue = Mathf.MoveTowards(CurValue, MaxValue, recovery);
         //ValueChangeChannel.OnNext(this);
     }
 

@@ -1,5 +1,5 @@
 
-using UnityEngine;
+using R3;
 
 public class Player : Entity
 {
@@ -22,9 +22,9 @@ public class Player : Entity
         abilityModule = GetComponent<AbilityModule>();
     }
 
-    private void Update()
+    private void Start()
     {
-        renderModule.Lookat(playerControlModule.LookDirection);
-        combatModule.SetFacingDirection(playerControlModule.LookDirection);
+        stateMachine.OnStateEnter.Subscribe(nextState => renderModule.RenderState(nextState));
+        playerControlModule.LookDirection.Subscribe(facingSide => renderModule.Lookat(facingSide));
     }
 }

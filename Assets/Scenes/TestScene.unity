@@ -284,7 +284,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RenderModule
   spriteTransform: {fileID: 1136727090}
   spriteRenderer: {fileID: 1136727091}
+  animator: {fileID: 1136727092}
 --- !u!114 &205279639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +357,7 @@ MonoBehaviour:
   stats:
   - key: 0
     value:
-      <Value>k__BackingField: 5
+      <Value>k__BackingField: 3
   - key: 1
     value:
       <Value>k__BackingField: 7
@@ -385,15 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8041ddc912eda468bce6650b0af794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatModule
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackBoxSize: {x: 1.5, y: 1.5, z: 1}
-  attackBoxOffset: {x: 1.25, y: 0.75, z: 0}
-  originHitData:
-    knockbackDirection: {x: 1, y: 1, z: 0}
-    knockbackForce: 3
-    damage: 10
+  HitstunTimer: 0
 --- !u!114 &205279643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +412,10 @@ MonoBehaviour:
     value:
       <CurValue>k__BackingField: 50
       <MaxValue>k__BackingField: 50
+  - key: 3
+    value:
+      <CurValue>k__BackingField: 3
+      <MaxValue>k__BackingField: 3
 --- !u!114 &205279644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,15 +438,24 @@ MonoBehaviour:
     - rid: 6307076972457754705
       type: {class: MoveAbility, ns: , asm: Assembly-CSharp}
       data:
-        allowedStateList: []
+        allowedStateList:
+        - {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
     - rid: 6307076999005601873
       type: {class: JumpAbility, ns: , asm: Assembly-CSharp}
-      data:
-        allowedStateList: []
+      data: 
     - rid: 6307076999005601874
       type: {class: AttackAbility, ns: , asm: Assembly-CSharp}
       data:
-        allowedStateList: []
+        targetLayer:
+          serializedVersion: 2
+          m_Bits: 64
+        attackBoxSize: {x: 1.5, y: 1.5, z: 1}
+        attackBoxOffset: {x: 1.5, y: 0, z: 0}
+        originHitData:
+          knockbackDirection: {x: 1, y: 1, z: 0}
+          knockbackForce: 3
+          hitstunTime: 0.3
+          damage: 10
 --- !u!114 &205279645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,11 +469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControlModule
   <Flags>k__BackingField: 0
-  <LookDirection>k__BackingField: 0
   <MoveDirection>k__BackingField: {x: 0, y: 0}
   flags:
-  - key: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-    value: 1
   - key: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     value: 2
   - key: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -485,9 +488,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ff87f9dd0252049a5c06a0e3e7ca31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StateMachine
-  <CurState>k__BackingField: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+  <StateTimer>k__BackingField: 0
   states:
   - key: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+    value:
+      dataList: []
+  - key: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
+    value:
+      dataList: []
+  - key: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
+    value:
+      dataList: []
+  transitionList:
+  - rid: 6307077132074090577
+  startState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 6307077132074090577
+      type: {class: CommandStateTransition, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +791,7 @@ MonoBehaviour:
   wallBounceHitData:
     knockbackDirection: {x: 1, y: 1, z: 0}
     knockbackForce: 5
+    hitstunTime: 0
     damage: 5
 --- !u!1 &955315537
 GameObject:
@@ -1034,6 +1055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136727090}
   - component: {fileID: 1136727091}
+  - component: {fileID: 1136727092}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -1105,7 +1127,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1852257980, guid: 3aaacc757c4cd1344bc3c1eaa4cc113f, type: 3}
+  m_Sprite: {fileID: -1460485271, guid: 2033cbef64e941e4ea351ff350d7069e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1116,6 +1138,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!95 &1136727092
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136727089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 993e9a93194e13f4c8cac05b2e2a832c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1215601701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,8 +1436,13 @@ MonoBehaviour:
   <GroundCheckSize>k__BackingField: {x: 0.5, y: 0.1, z: 0.5}
   <Gravity>k__BackingField: 10
   <FallingGravityWeight>k__BackingField: 2
-  <Drag>k__BackingField: 10
+  <DragFactor>k__BackingField: 0.8
   <ZtoY>k__BackingField: 0.5
+  animNames:
+  - key: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+    value: Idle
+  - key: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
+    value: Walk
 --- !u!1 &1518101712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RenderModule
   spriteTransform: {fileID: 1827672368}
   spriteRenderer: {fileID: 1827672367}
+  animator: {fileID: 1827672369}
 --- !u!114 &1821186304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,7 +1618,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
@@ -1655,6 +1705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827672368}
   - component: {fileID: 1827672367}
+  - component: {fileID: 1827672369}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -1711,7 +1762,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1852257980, guid: 3aaacc757c4cd1344bc3c1eaa4cc113f, type: 3}
+  m_Sprite: {fileID: -1460485271, guid: 2033cbef64e941e4ea351ff350d7069e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1737,6 +1788,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1821186308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1827672369
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827672366}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 993e9a93194e13f4c8cac05b2e2a832c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1861380606
 GameObject:
   m_ObjectHideFlags: 0

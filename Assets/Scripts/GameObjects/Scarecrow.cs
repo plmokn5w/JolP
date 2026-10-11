@@ -12,7 +12,7 @@ public class Scarecrow : Entity, Kinetic, Bounceable
         gaugeModule = GetComponent<GaugeModule>();
     }
 
-    public void Teleport(Vector3 position) { transform.position = position; }
+    public void Teleport(Vector3 position) { physicsModule.Teleport(position); }
 
     public void Knockback(Vector3 dir, float force)
     {

@@ -1,9 +1,10 @@
 
 using UnityEngine;
+using R3;
 
 public class PhysicsModule : MonoBehaviour
 {
-    public PhysicsState State { get; private set; }
+    public ReactiveProperty<PhysicsState> State { get; private set; } = new ReactiveProperty<PhysicsState>();
 
     private Rigidbody rigidbody;
 
@@ -41,14 +42,14 @@ public class PhysicsModule : MonoBehaviour
         Vector3 halfExtents = Vector3.Scale(WorldConfig.Instance.GroundCheckSize, transform.localScale) * 0.5f;
 
         if (Physics.CheckBox(checkPos, halfExtents, transform.rotation, WorldConfig.Instance.GroundLayer) && verticalVelocity <= 0f)
-            State = PhysicsState.Ground;
+            State.Value = PhysicsState.Ground;
         else
-            State = PhysicsState.Aerial;
+            State.Value = PhysicsState.Aerial;
     }
 
     private void HandleGravity()
     {
-        if (State == PhysicsState.Ground)
+        if (State.Value == PhysicsState.Ground)
         {
             verticalVelocity = 0f;
             return;
@@ -71,8 +72,13 @@ public class PhysicsModule : MonoBehaviour
 
     private void HandleDampingVelocity()
     {
-        if (State == PhysicsState.Ground)
-            impulseVelocity = Vector2.MoveTowards(impulseVelocity, Vector2.zero, WorldConfig.Instance.Drag * Time.fixedDeltaTime);
+        if (State.Value == PhysicsState.Ground)
+        {
+            impulseVelocity *= WorldConfig.Instance.DragFactor;
+            if (impulseVelocity.sqrMagnitude < 0.01f)
+                impulseVelocity = Vector2.zero;
+            //impulseVelocity = Vector2.MoveTowards(impulseVelocity, Vector2.zero, WorldConfig.Instance.Drag * Time.fixedDeltaTime);
+        }
         continuousVelocity = Vector2.zero;
     }
 
@@ -80,7 +86,7 @@ public class PhysicsModule : MonoBehaviour
     {
         if (WorldConfig.Instance == null) return;
 
-        Gizmos.color = State == PhysicsState.Ground ? Color.green : Color.red;
+        Gizmos.color = State.Value == PhysicsState.Ground ? Color.green : Color.red;
         Vector3 checkPos = transform.position;
         Vector3 halfExtents = Vector3.Scale(WorldConfig.Instance.GroundCheckSize, transform.localScale) * 0.5f;
 

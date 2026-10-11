@@ -21,19 +21,27 @@ public class PlayerControlModule : ControlModule
 
     private void Update()
     {
-        Flags = CommandFlags.None;
+        CommandFlags flags = CommandFlags.None;
 
         foreach (var (input, commmand) in bindings)
         {
             if (input.WasPressedThisFrame())
-                Flags |= commmand;
+                flags |= commmand;
         }
 
-        MoveDirection = moveInput.ReadValue<Vector2>();
-        float xDir = MoveDirection.x;
+        Vector2 moveDirection = moveInput.ReadValue<Vector2>();
+
+        if (moveDirection.sqrMagnitude > 0.01f)
+            flags |= CommandFlags.Move;
+
+        Flags = flags;
+
+        MoveDirection = moveDirection;
+
+        float xDir = moveDirection.x;
         if (xDir < 0f)
-            LookDirection = FacingSide.Left;
+            LookDirection.Value = FacingSide.Left;
         if (xDir > 0f)
-            LookDirection = FacingSide.Right;
+            LookDirection.Value = FacingSide.Right;
     }
 }
