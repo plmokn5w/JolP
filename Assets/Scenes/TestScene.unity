@@ -489,16 +489,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StateMachine
   <StateTimer>k__BackingField: 0
-  states:
-  - key: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
-    value:
-      dataList: []
-  - key: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
-    value:
-      dataList: []
-  - key: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
-    value:
-      dataList: []
+  stateSOs:
+  - {fileID: 11400000, guid: f9d1a3302c209b24ebb0bbe010dfa2b1, type: 2}
+  - {fileID: 11400000, guid: 78d295be670dd004ca71c420ab268899, type: 2}
   transitionList:
   - rid: 6307077132074090577
   startState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}

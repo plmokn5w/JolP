@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ead1f8e6a7484c4ea29419f4dfc3cdf, type: 3}
+  m_Name: SO_Idle
+  m_EditorClassIdentifier: Assembly-CSharp::StateSO
+  stateKey: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+  dataList:
+  - rid: 6307077157950586962
+  references:
+    version: 2
+    RefIds:
+    - rid: 6307077157950586962
+      type: {class: CommandStateData, ns: , asm: Assembly-CSharp}
+      data:
+        <Map>k__BackingField:
+        - key: 1
+          value: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
+        <noInputState>k__BackingField: {fileID: 0}

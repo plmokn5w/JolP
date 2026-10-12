@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using R3;
 
 [Serializable]
 public class MoveAbility : Ability
@@ -23,6 +24,7 @@ public class MoveAbility : Ability
         statModule = gameObject.GetComponent<StatModule>();
         foreach (var state in allowedStateList)
             allowedStates.Add(state);
+        stateMachine.OnStateExit.Where(state => allowedStates.Contains(state)).Subscribe(state => Stop());
     }
 
     public override bool CanActivate()
@@ -35,5 +37,10 @@ public class MoveAbility : Ability
     {
         StateKey state = stateMachine.CurrentState;
         physicsModule.Move(controlModule.MoveDirection, statModule[StatType.MoveSpeed]);
+    }
+
+    public void Stop()
+    {
+        physicsModule.Move(Vector2.zero, 0f);
     }
 }

@@ -1,15 +1,13 @@
 
 using System;
-using UnityEngine;
 using System.Collections.Generic;
 
 [Serializable]
 public class State
 {
-    [SerializeReference] private List<StateData> dataList;
-    private Dictionary<Type, StateData> datas;
+    private Dictionary<Type, StateData> datas = new();
 
-    public void Init()
+    public void Init(List<StateData> dataList)
     {
         foreach (var data in dataList)
             datas.Add(data.GetType(), data);
