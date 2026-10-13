@@ -7,8 +7,9 @@ using R3;
 [Serializable]
 public class MoveAbility : Ability
 {
+    private HashSet<StateKey> allowedStates = new();
+
     [SerializeField] private List<StateKey> allowedStateList;
-    private HashSet<StateKey> allowedStates = new HashSet<StateKey>();
 
     private StateMachine stateMachine;
     private ControlModule controlModule;

@@ -1,11 +1,16 @@
 
 using System;
-using UnityEngine;
 using System.Collections.Generic;
 
 [Serializable]
 public class CommandStateData : StateData
 {
-    [field: SerializeField] public Dictionary<CommandFlags, StateKey> Map { get; private set; }
-    [field: SerializeField] public StateKey noInputState { get; private set; }
+    [Serializable]
+    public class Pair
+    {
+        public CommandFlags command;
+        public StateKey state;
+    }
+    public List<Pair> pairs;
+    public StateKey noInputState;
 }

@@ -21,12 +21,12 @@ public class CommandStateTransition : StateTransition
         if (stateMachine.TryGetCurrentData(out CommandStateData data))
         {
             CommandFlags commandFlags = controlModule.Flags;
-            Dictionary<CommandFlags, StateKey> map = data.Map;
-            foreach (CommandFlags command in Enum.GetValues(typeof(CommandFlags)))
+            List<CommandStateData.Pair> pairs = data.pairs;
+            foreach (var pair in pairs)
             {
-                if (commandFlags.HasFlag(command) && map.ContainsKey(command))
+                if (commandFlags.HasFlag(pair.command))
                 {
-                    targetState = map[command];
+                    targetState = pair.state;
                     return true;
                 }
             }

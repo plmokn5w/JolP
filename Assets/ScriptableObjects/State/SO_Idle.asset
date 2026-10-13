@@ -21,7 +21,9 @@ MonoBehaviour:
     - rid: 6307077157950586962
       type: {class: CommandStateData, ns: , asm: Assembly-CSharp}
       data:
-        <Map>k__BackingField:
-        - key: 1
-          value: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
-        <noInputState>k__BackingField: {fileID: 0}
+        pairs:
+        - command: 2
+          state: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
+        - command: 1
+          state: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
+        noInputState: {fileID: 0}

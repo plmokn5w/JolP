@@ -6,7 +6,7 @@ using System;
 
 public class StateMachine : MonoBehaviour
 {
-    public StateKey CurrentState { get; private set; }
+    [field: SerializeField] public StateKey CurrentState { get; private set; }
     [field: SerializeField] public float StateTimer { get; private set; }
     public Observable<StateKey> OnStateEnter => onStateEnter;
     public Observable<StateKey> OnStateExit => onStateExit;
