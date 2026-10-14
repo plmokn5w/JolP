@@ -1,40 +1,46 @@
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class AttackAbility : Ability
 {
-    [Header("공격 판정 설정")]
-    [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private Vector3 attackBoxSize;
-    [SerializeField] private Vector3 attackBoxOffset;
-    [SerializeField] private HitData originHitData;
+    private HashSet<StateKey> allowedStates = new();
+
+    [SerializeField] private List<StateKey> allowedStateList;
 
     private Transform transform;
+    private StateMachine stateMachine;
     private ControlModule controlModule;
 
     public override void Init(GameObject gameObject)
     {
         base.Init(gameObject);
         transform = gameObject.transform;
+        stateMachine = gameObject.GetComponent<StateMachine>();
         controlModule = gameObject.GetComponent<ControlModule>();
+        foreach (var state in allowedStateList)
+            allowedStates.Add(state);
     }
 
     public override bool CanActivate()
     {
-        return controlModule.Flags.HasFlag(CommandFlags.Attack);
+        StateKey state = stateMachine.CurrentState;
+        return allowedStates.Contains(state) && controlModule.Flags.HasFlag(CommandFlags.Attack);
     }
 
     public override void Execute()
     {
-        Vector3 orientedOffset = attackBoxOffset;
+        if (!stateMachine.TryGetCurrentData(out AttackStateData data))
+            return;
+        Vector3 orientedOffset = data.attackBoxOffset;
         orientedOffset.x *= (float)controlModule.LookDirection.Value;
 
         Vector3 attackCenter = transform.position + orientedOffset;
-        Vector3 halfExtents = attackBoxSize * 0.5f;
+        Vector3 halfExtents = data.attackBoxSize * 0.5f;
 
-        Collider[] hitColliders = Physics.OverlapBox(attackCenter, halfExtents, Quaternion.identity, targetLayer);
+        Collider[] hitColliders = Physics.OverlapBox(attackCenter, halfExtents, Quaternion.identity, data.targetLayer);
 
         foreach (var col in hitColliders)
         {
@@ -43,7 +49,7 @@ public class AttackAbility : Ability
 
             if (col.TryGetComponent<Hittable>(out var hittable))
             {
-                HitData hitData = originHitData;
+                HitData hitData = data.originHitData;
                 Vector3 dir = hitData.knockbackDirection;
                 dir.x *= (float)controlModule.LookDirection.Value;
                 hitData.knockbackDirection = dir;

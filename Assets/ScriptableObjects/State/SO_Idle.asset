@@ -14,16 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
   stateKey: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
   dataList:
-  - rid: 6307077157950586962
+  - rid: 6307077202799493202
+  - rid: 6307077202799493206
+  - rid: 6307077202799493209
   references:
     version: 2
     RefIds:
-    - rid: 6307077157950586962
-      type: {class: CommandStateData, ns: , asm: Assembly-CSharp}
+    - rid: 6307077202799493202
+      type: {class: MoveStateData, ns: , asm: Assembly-CSharp}
       data:
-        pairs:
-        - command: 2
-          state: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
-        - command: 1
-          state: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
-        noInputState: {fileID: 0}
+        moveScale: 1
+        moveState: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
+        stopState: {fileID: 0}
+    - rid: 6307077202799493206
+      type: {class: JumpStateData, ns: , asm: Assembly-CSharp}
+      data:
+        jumpState: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
+    - rid: 6307077202799493209
+      type: {class: AttackStateData, ns: , asm: Assembly-CSharp}
+      data:
+        targetLayer:
+          serializedVersion: 2
+          m_Bits: 64
+        attackBoxSize: {x: 1.5, y: 1.5, z: 1}
+        attackBoxOffset: {x: 1.8, y: 0, z: 0}
+        originHitData:
+          knockbackDirection: {x: 1, y: 0, z: 0}
+          knockbackForce: 3
+          hitstunTime: 0.3
+          damage: 10

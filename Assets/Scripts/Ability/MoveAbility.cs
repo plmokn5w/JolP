@@ -30,14 +30,28 @@ public class MoveAbility : Ability
 
     public override bool CanActivate()
     {
-        StateKey state = stateMachine.CurrentState;
-        return allowedStates.Contains(state) && controlModule.Flags.HasFlag(CommandFlags.Move);
+        return allowedStates.Contains(stateMachine.CurrentState);
     }
 
     public override void Execute()
     {
-        StateKey state = stateMachine.CurrentState;
-        physicsModule.Move(controlModule.MoveDirection, statModule[StatType.MoveSpeed]);
+        if (!stateMachine.TryGetCurrentData(out MoveStateData data))
+        {
+            Debug.Log("데이터가 없음");
+            return;
+        }
+        if (controlModule.Flags.HasFlag(CommandFlags.Move))
+        {
+            if (data.moveState is not null)
+                stateMachine.TryChangeState(data.moveState);
+            physicsModule.Move(controlModule.MoveDirection, statModule[StatType.MoveSpeed] * data.moveScale);
+        }
+        else
+        {
+            if (data.stopState is not null)
+                stateMachine.TryChangeState(data.stopState);
+            physicsModule.Move(controlModule.MoveDirection, statModule[StatType.MoveSpeed] * data.moveScale);
+        }
     }
 
     public void Stop()

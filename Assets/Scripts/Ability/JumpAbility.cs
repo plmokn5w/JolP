@@ -39,6 +39,13 @@ public class JumpAbility : Ability
 
     public override void Execute()
     {
+        if (!stateMachine.TryGetCurrentData(out JumpStateData data))
+        {
+            Debug.Log("데이터가 없음");
+            //return;
+        }
+        if (data.jumpState is not null)
+            stateMachine.TryChangeState(data.jumpState);
         physicsModule.Launch(statModule[StatType.JumpPower]);
         gaugeModule[GaugeType.JumpCount].Lose(1f);
     }

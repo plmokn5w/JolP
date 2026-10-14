@@ -13,7 +13,19 @@ MonoBehaviour:
   m_Name: SO_Jump
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
   stateKey: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
-  dataList: []
+  dataList:
+  - rid: 6307077202799493204
+  - rid: 6307077202799493207
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6307077202799493204
+      type: {class: MoveStateData, ns: , asm: Assembly-CSharp}
+      data:
+        moveScale: 1
+        moveState: {fileID: 0}
+        stopState: {fileID: 0}
+    - rid: 6307077202799493207
+      type: {class: JumpStateData, ns: , asm: Assembly-CSharp}
+      data:
+        jumpState: {fileID: 0}

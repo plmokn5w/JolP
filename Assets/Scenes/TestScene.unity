@@ -439,26 +439,22 @@ MonoBehaviour:
       type: {class: MoveAbility, ns: , asm: Assembly-CSharp}
       data:
         allowedStateList:
+        - {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
         - {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
         - {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
     - rid: 6307076999005601873
       type: {class: JumpAbility, ns: , asm: Assembly-CSharp}
       data:
         allowedStateList:
+        - {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+        - {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
         - {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
     - rid: 6307076999005601874
       type: {class: AttackAbility, ns: , asm: Assembly-CSharp}
       data:
-        targetLayer:
-          serializedVersion: 2
-          m_Bits: 64
-        attackBoxSize: {x: 1.5, y: 1.5, z: 1}
-        attackBoxOffset: {x: 1.5, y: 0, z: 0}
-        originHitData:
-          knockbackDirection: {x: 1, y: 1, z: 0}
-          knockbackForce: 3
-          hitstunTime: 0.3
-          damage: 10
+        allowedStateList:
+        - {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+        - {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
 --- !u!114 &205279645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,28 +487,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ff87f9dd0252049a5c06a0e3e7ca31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StateMachine
+  <CurrentState>k__BackingField: {fileID: 0}
   <StateTimer>k__BackingField: 0
   stateSOs:
   - {fileID: 11400000, guid: f9d1a3302c209b24ebb0bbe010dfa2b1, type: 2}
   - {fileID: 11400000, guid: 78d295be670dd004ca71c420ab268899, type: 2}
   - {fileID: 11400000, guid: dbcab9761d466654ba807c32cc76c6e2, type: 2}
+  - {fileID: 11400000, guid: b3839bc9c753663499ce71fab16be3bc, type: 2}
   transitionList:
-  - rid: 7800295324049473621
-  - rid: 6307077132074090577
+  - rid: 6307077202799493205
   startState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 6307077132074090577
-      type: {class: CommandStateTransition, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 7800295324049473621
+    - rid: 6307077202799493205
       type: {class: EnviromentStateTransition, ns: , asm: Assembly-CSharp}
       data:
         onGroundState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
         landingStateList:
         - {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
-        - {fileID: 11400000, guid: 4b5e84ec1bb216b4caf1911b47e6ae86, type: 2}
         onAerialState: {fileID: 11400000, guid: 4b5e84ec1bb216b4caf1911b47e6ae86, type: 2}
         airborneStateList:
         - {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
@@ -1453,6 +1446,8 @@ MonoBehaviour:
   - key: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
     value: Walk
   - key: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
+    value: Jump
+  - key: {fileID: 11400000, guid: b34b4143316e1e04d846364bc48b7646, type: 2}
     value: Idle
 --- !u!1 &1518101712
 GameObject:

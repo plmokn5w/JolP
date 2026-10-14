@@ -14,16 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
   stateKey: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
   dataList:
-  - rid: 6307077157950586963
+  - rid: 6307077202799493203
+  - rid: 6307077202799493208
   references:
     version: 2
     RefIds:
-    - rid: 6307077157950586963
-      type: {class: CommandStateData, ns: , asm: Assembly-CSharp}
+    - rid: 6307077202799493203
+      type: {class: MoveStateData, ns: , asm: Assembly-CSharp}
       data:
-        pairs:
-        - command: 2
-          state: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
-        - command: 1
-          state: {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
-        noInputState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+        moveScale: 1
+        moveState: {fileID: 0}
+        stopState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
+    - rid: 6307077202799493208
+      type: {class: JumpStateData, ns: , asm: Assembly-CSharp}
+      data:
+        jumpState: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
