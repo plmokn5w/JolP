@@ -4,11 +4,13 @@ using UnityEngine;
 public class Scarecrow : Entity, Kinetic, Bounceable
 {
     private PhysicsModule physicsModule;
+    private CombatModule combatModule;
     private GaugeModule gaugeModule;
 
     private void Awake()
     {
         physicsModule = GetComponent<PhysicsModule>();
+        combatModule = GetComponent<CombatModule>();
         gaugeModule = GetComponent<GaugeModule>();
     }
 
@@ -36,6 +38,8 @@ public class Scarecrow : Entity, Kinetic, Bounceable
     public void Hit(HitData hitData)
     {
         Knockback(hitData.knockbackDirection, hitData.knockbackForce);
+        combatModule.SetHitstun(hitData.hitstunTime);
+        combatModule.SetState(hitData.targetState);
         gaugeModule[GaugeType.Health].Lose(hitData.damage);
     }
 

@@ -4,7 +4,7 @@ using R3;
 
 public class PhysicsModule : MonoBehaviour
 {
-    public ReactiveProperty<PhysicsState> State { get; private set; } = new ReactiveProperty<PhysicsState>();
+    public ReactiveProperty<PhysicsState> State { get; private set; } = new();
 
     private Rigidbody rigidbody;
 

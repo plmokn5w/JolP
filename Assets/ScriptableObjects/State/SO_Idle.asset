@@ -16,7 +16,7 @@ MonoBehaviour:
   dataList:
   - rid: 6307077202799493202
   - rid: 6307077202799493206
-  - rid: 6307077202799493209
+  - rid: 6307077214262001745
   references:
     version: 2
     RefIds:
@@ -30,16 +30,17 @@ MonoBehaviour:
       type: {class: JumpStateData, ns: , asm: Assembly-CSharp}
       data:
         jumpState: {fileID: 11400000, guid: 76366c415f44bf043af44b35e9caf8dd, type: 2}
-    - rid: 6307077202799493209
+    - rid: 6307077214262001745
       type: {class: AttackStateData, ns: , asm: Assembly-CSharp}
       data:
+        targetState: {fileID: 11400000, guid: b34b4143316e1e04d846364bc48b7646, type: 2}
         targetLayer:
           serializedVersion: 2
-          m_Bits: 64
-        attackBoxSize: {x: 1.5, y: 1.5, z: 1}
-        attackBoxOffset: {x: 1.8, y: 0, z: 0}
+          m_Bits: 0
+        attackBoxSize: {x: 0, y: 0, z: 0}
+        attackBoxOffset: {x: 0, y: 0, z: 0}
         originHitData:
-          knockbackDirection: {x: 1, y: 0, z: 0}
-          knockbackForce: 3
-          hitstunTime: 0.3
-          damage: 10
+          knockbackDirection: {x: 0, y: 0, z: 0}
+          knockbackForce: 0
+          hitstunTime: 0
+          damage: 0

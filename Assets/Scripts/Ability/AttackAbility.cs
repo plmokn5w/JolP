@@ -34,6 +34,11 @@ public class AttackAbility : Ability
     {
         if (!stateMachine.TryGetCurrentData(out AttackStateData data))
             return;
+        if (data.targetState is not null)
+        {
+            stateMachine.TryChangeState(data.targetState);
+            return;
+        }
         Vector3 orientedOffset = data.attackBoxOffset;
         orientedOffset.x *= (float)controlModule.LookDirection.Value;
 

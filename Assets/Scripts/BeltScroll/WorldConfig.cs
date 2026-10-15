@@ -13,7 +13,8 @@ public class WorldConfig : MonoBehaviour
     [field: SerializeField] public float FallingGravityWeight { get; private set; }
     [field: SerializeField] public float DragFactor { get; private set; }
     [field: SerializeField] public float ZtoY { get; private set; }
-    public Dictionary<StateKey, int> AnimationHash { get; private set; } = new Dictionary<StateKey, int>();
+    [field: SerializeField] public Dictionary<CombatState, StateKey> CombatStateMap { get; private set; }
+    public Dictionary<StateKey, int> AnimationHash { get; private set; } = new();
     [SerializeField] private Dictionary<StateKey, string> animNames;
 
     private void Awake()

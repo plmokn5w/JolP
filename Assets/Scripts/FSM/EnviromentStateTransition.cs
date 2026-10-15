@@ -36,13 +36,13 @@ public class EnviromentStateTransition : StateTransition
         return false;
     }
 
-    public void OnLanding()
+    private void OnLanding()
     {
         if (landingStates.Contains(stateMachine.CurrentState))
             stateMachine.TryChangeState(onGroundState);
     }
 
-    public void OnAirborne()
+    private void OnAirborne()
     {
         if (airborneStates.Contains(stateMachine.CurrentState))
             stateMachine.TryChangeState(onAerialState);
