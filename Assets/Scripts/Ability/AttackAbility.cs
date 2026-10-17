@@ -27,7 +27,7 @@ public class AttackAbility : Ability
     public override bool CanActivate()
     {
         StateKey state = stateMachine.CurrentState;
-        return allowedStates.Contains(state) && controlModule.Flags.HasFlag(CommandFlags.Attack);
+        return allowedStates.Contains(state);
     }
 
     public override void Execute()
@@ -36,7 +36,8 @@ public class AttackAbility : Ability
             return;
         if (data.targetState is not null)
         {
-            stateMachine.TryChangeState(data.targetState);
+            if (controlModule.Flags.HasFlag(CommandFlags.Attack))
+                stateMachine.TryChangeState(data.targetState);
             return;
         }
         Vector3 orientedOffset = data.attackBoxOffset;

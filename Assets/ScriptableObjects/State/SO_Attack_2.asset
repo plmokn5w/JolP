@@ -13,7 +13,28 @@ MonoBehaviour:
   m_Name: SO_Attack_2
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
   stateKey: {fileID: 11400000, guid: fb56cd4d452860e408a41a486cdb31c0, type: 2}
-  dataList: []
+  dataList:
+  - rid: 6307077271340974086
+  - rid: 6307077271340974087
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6307077271340974086
+      type: {class: AttackStateData, ns: , asm: Assembly-CSharp}
+      data:
+        targetState: {fileID: 11400000, guid: c7ae9bce45d7b194b8ab616cb6c073ec, type: 2}
+        targetLayer:
+          serializedVersion: 2
+          m_Bits: 64
+        attackBoxSize: {x: 1.5, y: 1.5, z: 1}
+        attackBoxOffset: {x: 1.8, y: 0, z: 0}
+        originHitData:
+          knockbackDirection: {x: 1, y: 1, z: 0}
+          knockbackForce: 3
+          hitstunTime: 0.3
+          targetState: 2
+          damage: 15
+    - rid: 6307077271340974087
+      type: {class: AnimationStateData, ns: , asm: Assembly-CSharp}
+      data:
+        nextState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}

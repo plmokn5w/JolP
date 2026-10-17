@@ -285,9 +285,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Height: 1.5
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.75, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &205279636
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -455,6 +455,9 @@ MonoBehaviour:
         allowedStateList:
         - {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
         - {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
+        - {fileID: 11400000, guid: b34b4143316e1e04d846364bc48b7646, type: 2}
+        - {fileID: 11400000, guid: fb56cd4d452860e408a41a486cdb31c0, type: 2}
+        - {fileID: 11400000, guid: c7ae9bce45d7b194b8ab616cb6c073ec, type: 2}
 --- !u!114 &205279645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,9 +497,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 78d295be670dd004ca71c420ab268899, type: 2}
   - {fileID: 11400000, guid: dbcab9761d466654ba807c32cc76c6e2, type: 2}
   - {fileID: 11400000, guid: b3839bc9c753663499ce71fab16be3bc, type: 2}
+  - {fileID: 11400000, guid: 2db9fef2c834f494da8b3e83cea64e8f, type: 2}
+  - {fileID: 11400000, guid: 1456e357ba871524c9c87fca3fd9103f, type: 2}
   transitionList:
-  - rid: 6307077202799493205
   - rid: 6307077214262001747
+  - rid: 6307077202799493205
+  - rid: 6307077243933556817
   startState: {fileID: 11400000, guid: 4e106002fb635604b9378e00e18d5ab8, type: 2}
   references:
     version: 2
@@ -513,6 +519,9 @@ MonoBehaviour:
         - {fileID: 11400000, guid: b746663f2c9eaf94e8dda09c9f3cfb6d, type: 2}
     - rid: 6307077214262001747
       type: {class: HitStateTransition, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 6307077243933556817
+      type: {class: AnimationStateTransition, ns: , asm: Assembly-CSharp}
       data: 
 --- !u!1 &519420028
 GameObject:
@@ -1459,6 +1468,10 @@ MonoBehaviour:
     value: Jump
   - key: {fileID: 11400000, guid: b34b4143316e1e04d846364bc48b7646, type: 2}
     value: Attack_1
+  - key: {fileID: 11400000, guid: fb56cd4d452860e408a41a486cdb31c0, type: 2}
+    value: Attack_2
+  - key: {fileID: 11400000, guid: c7ae9bce45d7b194b8ab616cb6c073ec, type: 2}
+    value: Attack_3
 --- !u!1 &1518101712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,9 +1649,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Height: 1.5
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.75, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &1821186307
 Rigidbody:
   m_ObjectHideFlags: 0
