@@ -27,17 +27,15 @@ public class AttackAbility : Ability
     public override bool CanActivate()
     {
         StateKey state = stateMachine.CurrentState;
-        return allowedStates.Contains(state);
+        return allowedStates.Contains(state) && stateMachine.TryGetCurrentData(out AttackStateData data);
     }
 
     public override void Execute()
     {
-        if (!stateMachine.TryGetCurrentData(out AttackStateData data))
-            return;
-        if (data.targetState is not null)
+        stateMachine.TryGetCurrentData(out AttackStateData data);
+        if (data.targetState is not null && controlModule.Flags.HasFlag(CommandFlags.Attack))
         {
-            if (controlModule.Flags.HasFlag(CommandFlags.Attack))
-                stateMachine.TryChangeState(data.targetState);
+            stateMachine.TryChangeState(data.targetState);
             return;
         }
         Vector3 orientedOffset = data.attackBoxOffset;
